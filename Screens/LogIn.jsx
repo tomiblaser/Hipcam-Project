@@ -1,25 +1,75 @@
-import React from 'react';
-import { View, Text, StyleSheet, Image, TextInput, TouchableOpacity } from "react-native";
+import React, { useState, useEffect } from 'react';
+import { View, Text, StyleSheet, Image, TextInput, TouchableOpacity, Alert } from "react-native";
 
 export default function LogInScreen({ navigation }) {
+
+    const [userState, setUserState] = useState({
+        email: 'sdf',
+        password: 'sdf',
+    });
+
+    const [mensajeError, setMensajeError] = useState("");
+
+    const [mensajeError2, setMensajeError2] = useState("");
+
+    const onPressLogIn = async (e) => {
+
+        if (!userState.email && !userState.password) {
+
+            console.log("Faltan datos. Por favor, agreguelos para continuar.");
+            setMensajeError("Ingrese el correo electrónico para continuar")
+            setMensajeError2("Ingrese la contraseña para continuar")
+
+        } else if (!userState.email) {
+
+            console.log("Faltan datos. Por favor, agreguelos para continuar.")
+            setMensajeError("Ingrese el correo electrónico para continuar")
+            setMensajeError2("")
+
+        } else if (!userState.password) {
+
+            console.log("Faltan datos. Por favor, agreguelos para continuar.")
+            setMensajeError2("Ingrese la contraseña para continuar")
+            setMensajeError("")
+
+        } else {
+            console.log("navegar");
+            navigation.navigate("DashboardScreen")
+            setMensajeError("")
+            setMensajeError2("")
+
+        }
+    }
 
     return (
 
         <View style={styles.container}>
             <Image
                 style={styles.image}
-                source={require('../assets/logo-negative.png')}
+                source={require('../assets/logo.png')}
             />
             <View style={styles.login}>
                 <Text style={styles.textinput1}>Correo electrónico</Text>
+
                 <TextInput
                     style={styles.input}
+                    value={userState.email}
+                    onChangeText={text => setUserState({ ...userState, email: text })}
                 />
+
+                <Text style={styles.mensajeError}>{mensajeError}</Text>
+
                 <Text style={styles.textinput2}>Contraseña</Text>
+
                 <TextInput
                     style={styles.input}
+                    secureTextEntry={true}
+                    value={userState.password}
+                    onChangeText={text => setUserState({ ...userState, password: text })}
                 />
-                <TouchableOpacity style={styles.button}>
+                <Text style={styles.mensajeError}>{mensajeError2}</Text>
+
+                <TouchableOpacity style={styles.button} onPress={() => onPressLogIn()}>
                     <Text style={styles.textbutton}>Ingresar</Text>
                 </TouchableOpacity>
             </View>
@@ -31,7 +81,7 @@ const styles = StyleSheet.create({
     container: {
         width: 375,
         height: 800,
-        backgroundColor: '#14aae1'
+        backgroundColor: '#121212'
     },
     image: {
         width: 220,
@@ -43,7 +93,7 @@ const styles = StyleSheet.create({
     },
     login: {
         width: 360,
-        height: 450,
+        height: 500,
         borderRadius: 19,
         backgroundColor: "#ffffff",
         shadowColor: "rgba(0, 0, 0, 0.3)",
@@ -81,7 +131,7 @@ const styles = StyleSheet.create({
         fontStyle: "normal",
         letterSpacing: 0,
         color: "#4d4d4d",
-        marginTop: 75,
+        marginTop: 60,
         marginLeft: 35,
         marginBottom: 10
 
@@ -103,7 +153,7 @@ const styles = StyleSheet.create({
         width: 200,
         height: 36,
         borderRadius: 20,
-        backgroundColor: '#14aae1',
+        backgroundColor: '#121212',
         shadowColor: "rgba(0, 0, 0, 0.3)",
         shadowOffset: {
             width: 0,
@@ -122,7 +172,11 @@ const styles = StyleSheet.create({
         fontStyle: "normal",
         letterSpacing: 0,
         color: "#ffffff",
-        alignSelf:'center',
-        marginTop:5
+        alignSelf: 'center',
+        marginTop: 5
+    },
+    mensajeError: {
+        color: 'red',
+        marginLeft:35
     }
 });
