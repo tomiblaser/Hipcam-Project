@@ -33,7 +33,6 @@ export default function LogInScreen({ navigation }) {
             setMensajeError("")
 
         } else {
-            console.log("navegar");
             navigation.navigate("DashboardScreen")
             setMensajeError("")
             setMensajeError2("")

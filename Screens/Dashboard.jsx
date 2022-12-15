@@ -2,27 +2,34 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, Image } from "react-native";
 import { getInfo } from '../Services/DataService';
 
-const [informacion, setInformacion] = useState({
-
-
-})
-
-const hipcamData = async (e) => {
-    await getInfo.then((response) => {
-        setInformacion(response)
-    })
-        .catch(() => {
-            console.log("error")
-        });
-}
-
-useEffect(() => {
-    (async () => {
-        await hipcamData()
-    })()
-}, [])
-
 const DashboardScreen = ({ navigation }) => {
+
+    const [informacion, setInformacion] = useState()
+
+    /*const hipcamData = async() => {
+        await getInfo().then((response) => {
+            console.log("seteado")
+            setInformacion(response)
+        })
+            .catch(() => {
+                console.log("vida loca error")
+            });
+    }*/
+
+    const hipcamData = async () => {
+        getInfo().then((response) => {
+            console.log("seteado")
+            setInformacion(response);
+        }).catch((error) => {
+            console.log("vida loca error22")
+        });
+    }
+
+    useEffect(() => {
+        (async () => {
+            await hipcamData()
+        })()
+    }, [])
 
     return (
 
@@ -37,11 +44,11 @@ const DashboardScreen = ({ navigation }) => {
 
             </View>
 
-            <Text>{informacion.summary}</Text>
+            <Text></Text>
 
         </View>
     )
-    
+
 }
 export default DashboardScreen
 
@@ -61,7 +68,6 @@ const styles = StyleSheet.create({
         marginVertical: 60
     },
     bienvenido: {
-        fontFamily: "Inter-Regular",
         fontSize: 21,
         fontWeight: "600",
         fontStyle: "normal",

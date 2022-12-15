@@ -24,7 +24,7 @@ const MainStack = () => {
                 <Stack.Screen
                     name='DashboardScreen'
                     component={DashboardScreen}
-                />
+            />
 
             </Stack.Navigator>
         </NavigationContainer>
