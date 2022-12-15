@@ -1,7 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, Image } from "react-native";
+import { getInfo } from '../Services/DataService';
 
-export default function DashboardScreen({ navigation }) {
+const [informacion, setInformacion] = useState({
+
+
+})
+
+const hipcamData = async (e) => {
+    await getInfo.then((response) => {
+        setInformacion(response)
+    })
+        .catch(() => {
+            console.log("error")
+        });
+}
+
+useEffect(() => {
+    (async () => {
+        await hipcamData()
+    })()
+}, [])
+
+const DashboardScreen = ({ navigation }) => {
 
     return (
 
@@ -15,9 +36,14 @@ export default function DashboardScreen({ navigation }) {
                 <Text style={styles.bienvenido}>Bienvenido, Sebastián</Text>
 
             </View>
+
+            <Text>{informacion.summary}</Text>
+
         </View>
     )
+    
 }
+export default DashboardScreen
 
 const styles = StyleSheet.create({
     container: {

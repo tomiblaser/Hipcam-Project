@@ -1,0 +1,1 @@
+export const URL_API = 'https://api.sbx.hipcam.com/web/reporter/summary/';
