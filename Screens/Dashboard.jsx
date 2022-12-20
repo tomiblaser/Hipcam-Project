@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, Image } from "react-native";
+import { View, Text, StyleSheet, Image, ScrollView } from "react-native";
 import { getInfo } from '../Services/DataService';
+import CardBuilding from '../Components/CardBuildings';
+import CardUnit from '../Components/CardUnits';
+import CardUser from '../Components/CardUsers';
+import CardDevices from '../Components/CardDevices';
 
 const DashboardScreen = ({ navigation }) => {
 
@@ -8,8 +12,9 @@ const DashboardScreen = ({ navigation }) => {
 
     const hipcamData = async () => {
         getInfo().then((response) => {
-            console.log("seteado: " + response["summary"]["buildings"])
+            console.log("Tomi" + response["summary"]["buildings"]);
             setInformacion(response);
+            console.log("Seba" + informacion["summary"]["buildings"]);
         }).catch((error) => {
             console.log("este error:" + error)
         });
@@ -23,20 +28,33 @@ const DashboardScreen = ({ navigation }) => {
 
     return (
 
-        <View style={styles.container}>
+        <ScrollView style={styles.container}>
             <View style={styles.header}>
 
                 <Image
                     style={styles.logo}
                     source={require('../assets/logo.png')}
                 />
-                <Text style={styles.bienvenido}>Bienvenido, Sebastián</Text>
-                <Text>{informacion["summary"]["buildings"]}</Text>
+
             </View>
+            
+            <CardBuilding
+            //total = {informacion["summary"]["buildings"]}
+            />
 
-            <Text></Text>
+            <CardUnit
+            //total = {informacion["summary"]["buildings_units"]}
+            />
 
-        </View>
+            <CardUser
+            //total = {informacion["summary"]["buildings_units"]}
+            />
+
+            <CardDevices
+            //total = {informacion["summary"]["-"]}
+            />
+
+        </ScrollView>
     )
 
 }
@@ -44,25 +62,22 @@ export default DashboardScreen
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: "#dddddd"
+        backgroundColor: "#dddddd",
+        width: 360,
+        height: 1281,
     },
     header: {
-        height: 148,
+        width: 360,
+        height: 120,
         backgroundColor: "#121212",
-        borderRadius: 15
+        borderRadius: 15,
+        marginBottom: 20
     },
     logo: {
-        width: 85,
-        height: 20,
+        width: 100,
+        height: 24,
         alignSelf: 'center',
-        marginVertical: 60
-    },
-    bienvenido: {
-        fontSize: 21,
-        fontWeight: "600",
-        fontStyle: "normal",
-        letterSpacing: 1.05,
-        textAlign: "left",
-        color: "#dddddd"
+        marginTop: 60
     }
+
 });
