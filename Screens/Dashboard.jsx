@@ -6,22 +6,12 @@ const DashboardScreen = ({ navigation }) => {
 
     const [informacion, setInformacion] = useState()
 
-    /*const hipcamData = async() => {
-        await getInfo().then((response) => {
-            console.log("seteado")
-            setInformacion(response)
-        })
-            .catch(() => {
-                console.log("vida loca error")
-            });
-    }*/
-
     const hipcamData = async () => {
         getInfo().then((response) => {
-            console.log("seteado")
+            console.log("seteado: " + response["summary"]["buildings"])
             setInformacion(response);
         }).catch((error) => {
-            console.log("vida loca error22")
+            console.log("este error:" + error)
         });
     }
 
@@ -41,7 +31,7 @@ const DashboardScreen = ({ navigation }) => {
                     source={require('../assets/logo.png')}
                 />
                 <Text style={styles.bienvenido}>Bienvenido, Sebastián</Text>
-
+                <Text>{informacion["summary"]["buildings"]}</Text>
             </View>
 
             <Text></Text>

@@ -8,14 +8,13 @@ export const getInfo = async() => {
   return DataClient
   .get(``, {
     headers: {
-      'Authorization': `Token cb3be967de1f`
+      "Authorization": `Token ${tokenId}`
     }
   })
     .then(async(res) => { 
 
       const info = res.data
-      const summary = JSON.parse(info)
-      return summary
+      return info
     })
     .catch((err) => {
       console.log(`register error`, err.response);
