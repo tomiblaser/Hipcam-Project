@@ -7,7 +7,7 @@ const CardBuilding = (props) => (
     <View style={[{ flex: 1, borderRadius: 10 }, { flexDirection: 'row' }]}>
         <Image style={[styles.imagenTipo, { flex: 1 }]} source={require('../assets/edificios.png')} />
         <Text style={{ flex: 2, marginTop: 35, marginLeft: 5 }}>Edificios</Text>
-        <Text style={{ flex: 2, marginTop: 30, textAlign: 'center', fontWeight: 'bold', fontSize: 20 }}>Total: 166{props.total}</Text>
+        <Text style={{ flex: 2, marginTop: 30, textAlign: 'center', fontWeight: 'bold', fontSize: 20 }}>Total: {props.total}</Text>
     </View>
 
     <View style={{ flex: 1, alignItems: 'center' }}>
@@ -40,21 +40,21 @@ const CardBuilding = (props) => (
 
             <View style={[{ flex: 50, alignItems: 'center' }, {flexDirection:'column'}]}>
                 <Text style={{ flex: 1, color:'white', marginTop:5, fontWeight:'bold', fontSize:18}}>25</Text>
-                <Text style={{ flex: 1, color:'#dddddd', fontStyle:'italic'}}>Mexico</Text>
+                <Text style={{ flex: 1, color:'#dddddd'}}>Mexico</Text>
             </View>
 
             <View style={{ flex: 1, width: 1,height: 60, backgroundColor: "#848484", marginTop:5}}></View>
 
             <View style={[{ flex: 50, alignItems: 'center' }, {flexDirection:'column'}]}>
                 <Text style={{ flex: 1, color:'white', marginTop:5, fontWeight:'bold', fontSize:18}}>18</Text>
-                <Text style={{ flex: 1, color:'#dddddd', fontStyle:'italic'}}>Chile</Text>
+                <Text style={{ flex: 1, color:'#dddddd'}}>Chile</Text>
             </View>
 
             <View style={{ flex: 1, width: 1,height: 60, backgroundColor: "#848484", marginTop:5}}></View>
 
             <View style={[{ flex: 50, alignItems: 'center' }, {flexDirection:'column'}]}>
                 <Text style={{ flex: 1, color:'white', marginTop:5, fontWeight:'bold', fontSize:18}}>13</Text>
-                <Text style={{ flex: 1, color:'#dddddd', fontStyle:'italic'}}>LATAM</Text>
+                <Text style={{ flex: 1, color:'#dddddd'}}>LATAM</Text>
             </View>
 
         </View>

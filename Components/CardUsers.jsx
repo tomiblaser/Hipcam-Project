@@ -7,7 +7,7 @@ const CardUser = (props) => (
         <View style={[{ flex: 1, borderRadius: 10 }, { flexDirection: 'row' }]}>
             <Image style={[styles.imagenTipo, { flex: 1, height: 48, width: 48 }]} source={require('../assets/users.png')} />
             <Text style={{ flex: 3, marginTop: 30, marginLeft: 10 }}>Usuarios</Text>
-            <Text style={{ flex: 3, marginTop: 25, textAlign: 'center', fontWeight: 'bold', fontSize: 20 }}>Total: 24.952{props.total}</Text>
+            <Text style={{ flex: 3, marginTop: 25, textAlign: 'center', fontWeight: 'bold', fontSize: 20 }}>Total: {props.total}</Text>
         </View>
 
         <View style={{ flex: 1, alignItems: 'center' }}>

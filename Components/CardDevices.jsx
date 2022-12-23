@@ -21,7 +21,7 @@ const CardDevices = (props) => (
                 <View style={{ flex: 1, width: 1, height: 60, backgroundColor: "#848484", marginTop: 5 }}></View>
 
                 <View style={[{ flex: 50, alignItems: 'center' }, { flexDirection: 'column' }]}>
-                    <Text style={{ flex: 1, color: 'white', marginTop: 5, fontWeight: 'bold', fontSize: 18 }}>237</Text>
+                    <Text style={{ flex: 1, color: 'white', marginTop: 5, fontWeight: 'bold', fontSize: 18 }}>{props.hipboards}</Text>
                     <Text style={{ flex: 1, color: '#dddddd' }}>Hipboards</Text>
                 </View>
 

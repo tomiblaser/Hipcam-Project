@@ -4,7 +4,7 @@ import { View, Text, StyleSheet, Image, TextInput, TouchableOpacity, Alert } fro
 export default function LogInScreen({ navigation }) {
 
     const [userState, setUserState] = useState({
-        email: 'sdf',
+        username: 'sdf',
         password: 'sdf',
     });
 
@@ -14,13 +14,13 @@ export default function LogInScreen({ navigation }) {
 
     const onPressLogIn = async (e) => {
 
-        if (!userState.email && !userState.password) {
+        if (!userState.username && !userState.password) {
 
             console.log("Faltan datos. Por favor, agreguelos para continuar.");
             setMensajeError("Ingrese el correo electrónico para continuar")
             setMensajeError2("Ingrese la contraseña para continuar")
 
-        } else if (!userState.email) {
+        } else if (!userState.username) {
 
             console.log("Faltan datos. Por favor, agreguelos para continuar.")
             setMensajeError("Ingrese el correo electrónico para continuar")
@@ -33,10 +33,19 @@ export default function LogInScreen({ navigation }) {
             setMensajeError("")
 
         } else {
-            navigation.navigate("DashboardScreen")
+            
             setMensajeError("")
             setMensajeError2("")
-
+            navigation.navigate("DashboardScreen")
+            //await loginEntry(userState).then(() => {
+            //    console.log("Sesión iniciada correctamente")
+            //    navigation.navigate("DashboardScreen")
+            //})
+            //.catch(() => {
+            //
+            //    console.log("Email o contrasena incorrecta")
+            //    Alert.alert("Email o contrasena incorrecta")
+            //});
         }
     }
 
@@ -52,8 +61,8 @@ export default function LogInScreen({ navigation }) {
 
                 <TextInput
                     style={styles.input}
-                    value={userState.email}
-                    onChangeText={text => setUserState({ ...userState, email: text })}
+                    value={userState.username}
+                    onChangeText={text => setUserState({ ...userState, username: text })}
                 />
 
                 <Text style={styles.mensajeError}>{mensajeError}</Text>

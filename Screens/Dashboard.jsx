@@ -9,11 +9,15 @@ import CardDevices from '../Components/CardDevices';
 const DashboardScreen = ({ navigation }) => {
 
     const [informacion, setInformacion] = useState()
+    const [loading, setLoading] = useState(true);
 
     const hipcamData = async () => {
+        setLoading(true);
         getInfo().then((response) => {
+            console.log("response" + response)
             console.log("Tomi" + response["summary"]["buildings"]);
             setInformacion(response);
+            setLoading(false);
             console.log("Seba" + informacion["summary"]["buildings"]);
         }).catch((error) => {
             console.log("este error:" + error)
@@ -29,30 +33,34 @@ const DashboardScreen = ({ navigation }) => {
     return (
 
         <ScrollView style={styles.container}>
-            <View style={styles.header}>
+            {loading ? <Text>loading</Text> :
+                <><View style={styles.header}>
 
-                <Image
-                    style={styles.logo}
-                    source={require('../assets/logo.png')}
-                />
+                    <Image
+                        style={styles.logo}
+                        source={require('../assets/logo.png')}
+                    />
 
-            </View>
-            
-            <CardBuilding
-            //total = {informacion["summary"]["buildings"]}
-            />
+                </View>
 
-            <CardUnit
-            //total = {informacion["summary"]["buildings_units"]}
-            />
+                    <CardBuilding
+                        total={informacion["summary"]["buildings"]}
+                    />
 
-            <CardUser
-            //total = {informacion["summary"]["buildings_units"]}
-            />
+                    <CardUnit
+                        total={informacion["summary"]["building_units"]}
+                    />
 
-            <CardDevices
-            //total = {informacion["summary"]["-"]}
-            />
+                    <CardUser
+                        total={informacion["summary"]["users"]}
+                    />
+
+                    <CardDevices
+                        //total = {informacion["summary"]["-"]}
+                        hipboards={informacion["summary"]["hipboards"]}
+                    /></>
+            }
+
 
         </ScrollView>
     )
